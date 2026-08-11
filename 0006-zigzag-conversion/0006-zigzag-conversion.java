@@ -1,39 +1,26 @@
 class Solution {
-    public String convert(String s, int numRows) {
-
-        if (numRows == 1 || numRows >= s.length()) {
-            return s;
+    public String convert(String s, int numsRows) {
+        if(numsRows==1 ||s.length()<=numsRows) return s;
+        StringBuilder[] sb=new StringBuilder[numsRows];
+        for(int i=0;i<numsRows;i++){
+            sb[i]=new StringBuilder();
         }
-
-        StringBuilder[] rows = new StringBuilder[numRows];
-
-        for (int i = 0; i < numRows; i++) {
-            rows[i] = new StringBuilder();
-        }
-
-        int row = 0;
-        int direction = 1;
-
-        for (char ch : s.toCharArray()) {
-
-            rows[row].append(ch);
-
-            if (row == 0) {
-                direction = 1;
-            } 
-            else if (row == numRows - 1) {
-                direction = -1;
+        int k=0;
+        int st=1;
+        for(char c: s.toCharArray()){
+            sb[k].append(c);
+            if(k==0){
+                st=1;
+            }else if(k==numsRows-1){
+                st=-1;
             }
-
-            row += direction;
+            k+=st;
         }
-
-        StringBuilder answer = new StringBuilder();
-
-        for (StringBuilder r : rows) {
-            answer.append(r);
+        StringBuilder res=new StringBuilder();
+        for(int i=0;i<sb.length;i++){
+            res.append(sb[i]);
         }
-
-        return answer.toString();
+        return res.toString();
+        
     }
 }
