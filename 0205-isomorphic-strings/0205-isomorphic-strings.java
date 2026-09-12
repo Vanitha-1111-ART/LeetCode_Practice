@@ -1,27 +1,23 @@
 class Solution {
     public boolean isIsomorphic(String s, String t) {
-        HashMap<Character,Character> sm=new HashMap<>();
-        HashMap<Character,Character> tm=new HashMap<>();
-        int sn=s.length();
-        int tn=t.length();
+        int sn=s.length(),tn=t.length();
         if(sn!=tn) return false;
+        HashMap<Character,Character> map1=new HashMap<>();
+        HashMap<Character,Character> map2=new HashMap<>();
         for(int i=0;i<sn;i++){
-            if(!sm.containsKey(s.charAt(i)) && !tm.containsKey(t.charAt(i))){
-            sm.put(s.charAt(i),t.charAt(i) );
-            tm.put(t.charAt(i),s.charAt(i));    
+            if(!map1.containsKey(s.charAt(i)) && !map2.containsKey(t.charAt(i))){
+                map1.put(s.charAt(i),t.charAt(i));
+                map2.put(t.charAt(i),s.charAt(i));
             }
-            else if(sm.containsKey(s.charAt(i)) && tm.containsKey(t.charAt(i))){
-            if(tm.get(t.charAt(i))!=s.charAt(i) || sm.get(s.charAt(i))!=t.charAt(i))return false;
+            else if(map2.containsKey(t.charAt(i)) && map1.containsKey(s.charAt(i))){
+               if(map1.get(s.charAt(i))!=t.charAt(i) ||map2.get(t.charAt(i))!=s.charAt(i)){
+                return false;
+               }
             }
             else{
                 return false;
             }
         }
-
-            
-        
         return true;
-
     }
-    
 }
