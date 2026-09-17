@@ -4,10 +4,8 @@ class Solution {
         int i=0,j=numbers.length-1;
         while(i<j){
             if(numbers[i]+numbers[j]==target){
-                arr.add(i+1);
-                arr.add(j+1);
-                i++;
-                j--;
+               return new int[] {i+1,j+1};
+                
             }
             else if(numbers[i]+numbers[j]>target){
                 j--;
